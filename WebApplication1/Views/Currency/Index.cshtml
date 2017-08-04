@@ -1,0 +1,30 @@
+﻿@model IQueryable<WebApplication1.Models.ICurrency>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Валюты</h2>
+
+<div class="action_buttons">
+    @Html.ActionLink("Создать", "Add")
+</div>
+<div class="table">
+    <table id="currency">
+        <thead>
+            <th>Имя</th>
+            <th>Код базовой</th>
+            <th>Код на которую меняют</th>
+        </thead>
+        @foreach (var curr in ViewBag.CurrencyList)
+        {
+            <tr>
+                <td>@Html.ActionLink((string)(curr.NameFrom + curr.NameTo), "Show", new {id = curr.Id}, null)</td>
+                <td>@curr.CodeFrom</td>
+                <td>@curr.CodeTo</td>
+            </tr>
+        }
+    </table>
+</div>
+

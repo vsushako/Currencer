@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Models.ICurrency
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>title</h2>
+@using (Html.BeginForm("Add", "Currency", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div class="action_buttons">
+        <input type="submit" alt="Сохранить">
+    </div>
+    <div class="data_wrapper">
+        <div id="currency">
+            <div class="data_row">
+                <div class="name">
+                    @Html.LabelFor(m => m.NameFrom)
+                </div>
+                <div class="data">
+                    @Html.TextBoxFor(m => m.NameFrom)
+                </div>
+            </div>
+            <div class="data_row">
+                <div class="name">
+                    @Html.LabelFor(m => m.NameTo)
+                </div>
+                <div class="data">
+                    @Html.TextBoxFor(m => m.NameTo)
+                </div>
+            </div>
+            <div class="data_row">
+                <div class="name">
+                    <span>@Html.LabelFor(m => m.CodeFrom)</span>
+                </div>
+                <div class="data">
+                    @Html.TextBoxFor(m => m.CodeFrom)
+                </div>
+            </div>
+            <div class="data_row">
+                <div class="name">
+                    <span>@Html.LabelFor(m => m.CodeTo)</span>
+                </div>
+                <div class="data">
+                    @Html.TextBoxFor(m => m.CodeTo)
+                </div>
+            </div>
+        </div>
+    </div>
+}

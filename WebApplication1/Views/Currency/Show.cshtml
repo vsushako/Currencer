@@ -1,0 +1,48 @@
+﻿@model WebApplication1.Models.ICurrency
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBag.Title</h2>
+<div class="action_buttons">
+    @Html.ActionLink("Удалить", "Delete", new { id = ViewBag.Currency.Id }, null)
+    @Html.ActionLink("Редактировать", "Update", new { id = ViewBag.Currency.Id }, null)
+</div>
+<div class="data_wrapper">
+    <div id="currency">
+        <div class="data_row">
+            <div class="name">
+                <span>@Html.LabelFor(m => m.NameFrom)</span>
+            </div>
+            <div class="data">
+                <span>@ViewBag.Currency.NameFrom</span>
+            </div>
+        </div>
+        <div class="data_row">
+            <div class="name">
+                <span>@Html.LabelFor(m => m.NameTo)</span>
+            </div>
+            <div class="data">
+                <span>@ViewBag.Currency.NameTo</span>
+            </div>
+        </div>
+        <div class="data_row">
+            <div class="name">
+                <span>@Html.LabelFor(m => m.CodeFrom)</span>
+            </div>
+            <div class="data">
+                <span>@ViewBag.Currency.CodeFrom</span>
+            </div>
+        </div>
+        <div class="data_row">
+            <div class="name">
+                <span>@Html.LabelFor(m => m.CodeTo)</span>
+            </div>
+            <div class="data">
+                <span>@ViewBag.Currency.CodeTo</span>
+            </div>
+        </div>
+    </div>
+</div>

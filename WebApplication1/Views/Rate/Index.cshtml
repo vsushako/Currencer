@@ -1,0 +1,83 @@
+﻿@using WebApplication1.Models
+@model WebApplication1.Models.IRate
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Динамика изменения валюты</h2>
+<div class="">
+    <span>@Html.DropDownList("Выбор валюты", ViewBag.CurrencyList as SelectList, new { id = "currency" }) </span>
+    <span>
+        c @Html.TextBox("time_from", DateTime.Now.AddDays(-1))
+        @Html.Hidden("time_from_val", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd hh:mm"))
+    </span>
+    <span>
+        по @Html.TextBox("time_to", DateTime.Now)
+        @Html.Hidden("time_to_val", DateTime.Now.ToString("yyyy-MM-dd hh:mm"))
+    </span>
+    <div id="graph">
+    </div>
+
+    <script>
+        $("#time_from").datetimepicker({
+            format: 'dd.mm.yyyy hh:ii',
+            linkField: "time_from_val",
+            linkFormat: "yyyy-mm-dd hh:ii"
+        });
+        $("#time_to").datetimepicker({
+            format: 'dd.mm.yyyy hh:ii' ,
+            linkField: "time_to_val",
+            linkFormat: "yyyy-mm-dd hh:ii"
+        });
+
+        $(document).ready(function () {
+            var refreshDuration = 1000;
+            $("#graph").graph({
+                x_axis_name: "Время",
+                y_axis_name: "Валюта",
+                refresh_duration: refreshDuration,
+                width: $("#graph").parent().width(),
+                height: 100,
+                x_element_name: "Date",
+                y_element_name: "Value",
+                get_new_point: function() {
+                    var now = new Date();
+                    var lastRequest = new Date(now.getTime() - refreshDuration);
+                    var currency = $("#currency").val();
+
+                    return $.ajax({
+                        url: '/api/rate?dateBegin=' + lastRequest.toJSON() + "&dateEnd=" + now.toJSON() + "&currency=" + currency,
+                        global: false,
+                        type: 'GET',
+                        succsess: function (result) {
+                            debugger;
+
+                            return result;
+                        }
+                    });
+                },
+                draw_history: function() {
+                    var timeFrom = new Date($("#time_from_val").val());
+                    var timeTo = new Date($("#time_to_val").val());
+                    var currency = $("#currency").val();
+                    
+                    return $.ajax({
+                        url: '/api/rate?dateBegin=' + timeFrom.toJSON() + "&dateEnd=" + timeTo.toJSON() + "&currency=" + currency,
+                        global: false,
+                        type: 'GET',
+                        succsess: function (result) {
+                            debugger;
+                            return result;
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
+</div>
+
