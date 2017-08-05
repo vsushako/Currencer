@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewBag.Title</h2>
+<h2>Информация</h2>
 <div class="action_buttons">
-    @Html.ActionLink("Удалить", "Delete", new { id = ViewBag.Currency.Id }, null)
-    @Html.ActionLink("Редактировать", "Update", new { id = ViewBag.Currency.Id }, null)
+    @Html.ActionLink("Удалить", "Delete", new { id = ViewBag.Currency.Id }, new { @class = "button" })
+    @Html.ActionLink("Редактировать", "Update", new { id = ViewBag.Currency.Id }, new { @class = "button" })
 </div>
 <div class="data_wrapper">
     <div id="currency">

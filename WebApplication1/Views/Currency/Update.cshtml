@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<h2>Изменение</h2>
 @using (Html.BeginForm("Update", "Currency", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     @Html.HiddenFor(m => m.Id, new { @Value = ViewBag.Currency.Id })
     <div class="action_buttons">
-        <input type="submit" alt="Сохранить">
+        <input type="submit" alt="Сохранить" class="button">
     </div>
     <div class="data_wrapper">
         <div id="currency">

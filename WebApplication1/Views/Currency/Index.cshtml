@@ -8,7 +8,7 @@
 <h2>Валюты</h2>
 
 <div class="action_buttons">
-    @Html.ActionLink("Создать", "Add")
+    @Html.ActionLink("Создать", "Add", null, new {@class="button" })
 </div>
 <div class="table">
     <table id="currency">
@@ -20,7 +20,7 @@
         @foreach (var curr in ViewBag.CurrencyList)
         {
             <tr>
-                <td>@Html.ActionLink((string)(curr.NameFrom + curr.NameTo), "Show", new {id = curr.Id}, null)</td>
+                <td>@Html.ActionLink((string)(curr.NameFrom + " - " + curr.NameTo), "Show", new {id = curr.Id}, null)</td>
                 <td>@curr.CodeFrom</td>
                 <td>@curr.CodeTo</td>
             </tr>

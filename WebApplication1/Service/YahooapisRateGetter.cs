@@ -21,7 +21,7 @@ namespace WebApplication1
             var yahooapisUrl = ConfigurationManager.AppSettings["yahooapis.url"];
             var queryParams = new Dictionary<string, object>
             {
-                {"q", $"select+*+from+yahoo.finance.xchange+where+pair+=+%22{codeFrom}{codeTo}%22"},
+                {"q", $"select+*+from+yahoo.finance.xchange+where+pair+=+%22{codeTo}{codeFrom}%22"},
                 {"format", "json"},
                 {"env", "store%3A%2F%2Fdatatables.org%2Falltableswithkeys"}
             };

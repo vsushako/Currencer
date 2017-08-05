@@ -11,26 +11,29 @@
 <div class="">
     <span>@Html.DropDownList("Выбор валюты", ViewBag.CurrencyList as SelectList, new { id = "currency" }) </span>
     <span>
-        c @Html.TextBox("time_from", DateTime.Now.AddDays(-1))
-        @Html.Hidden("time_from_val", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd hh:mm"))
+        c @Html.TextBox("time_from", DateTime.Now.AddHours(-1))
+        @Html.Hidden("time_from_val", DateTime.Now.AddHours(-1).ToString("yyyy-MM-dd H:mm:ss"))
     </span>
     <span>
         по @Html.TextBox("time_to", DateTime.Now)
-        @Html.Hidden("time_to_val", DateTime.Now.ToString("yyyy-MM-dd hh:mm"))
+        @Html.Hidden("time_to_val", DateTime.Now.ToString("yyyy-MM-dd H:mm:ss"))
+    </span>
+    <span>
+        <input type="button" id="refresh" class="button" value="Обновить"/>
     </span>
     <div id="graph">
     </div>
 
     <script>
         $("#time_from").datetimepicker({
-            format: 'dd.mm.yyyy hh:ii',
+            format: 'dd.mm.yyyy hh:ii:ss',
             linkField: "time_from_val",
-            linkFormat: "yyyy-mm-dd hh:ii"
+            linkFormat: "yyyy-mm-dd hh:ii:ss"
         });
         $("#time_to").datetimepicker({
-            format: 'dd.mm.yyyy hh:ii' ,
+            format: 'dd.mm.yyyy hh:ii:ss' ,
             linkField: "time_to_val",
-            linkFormat: "yyyy-mm-dd hh:ii"
+            linkFormat: "yyyy-mm-dd hh:ii:ss"
         });
 
         $(document).ready(function () {
@@ -75,6 +78,7 @@
                     });
                 }
             });
+            $("#refresh").on('click', function () { $("#graph").graph("refresh")  });
         });
 
     </script>

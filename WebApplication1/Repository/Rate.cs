@@ -22,9 +22,6 @@ namespace WebApplication1.Repository
         [Column("date")]
         public DateTime Date { get; set; }
 
-        [Column("rate_changed")]
-        public double RateChange { get; set; }
-
         public ICurrency Currency {
             get { return CurrencyEntity; }
             set { CurrencyEntity = value as Currency; }

@@ -21,11 +21,6 @@ namespace WebApplication1.Models
         Guid Id { get; set; }
 
         /// <summary>
-        /// На сколько изменилась
-        /// </summary>
-        double RateChange { get; set; }
-
-        /// <summary>
         /// Текущее значение
         /// </summary>
         double Value { get; set; }
