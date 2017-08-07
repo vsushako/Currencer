@@ -127,11 +127,10 @@
         var min = Math.min.apply(null, yVals);
         var max = Math.max.apply(null, yVals);
         var avg = max - min;
-        points[0].position = { x: points.length * step, y: 100 - getValue(avg, min, points[0].y) };
+        points[0].position = { x: points.length * step, y: 100 - getValue(avg, min, points[0].y) / 2 };
 
         for (var i = 0; i < points.length - 1; i++) {
-            var value = 100 - getValue(avg, min, points[i].y);
-            var nextVal = 100 - getValue(avg, min, points[i + 1].y);
+            var nextVal = 100 - getValue(avg, min, points[i + 1].y) / 2;
             points[i + 1].position = { x : (points.length - i - 1) * step, y: nextVal};
 
             context.beginPath();
